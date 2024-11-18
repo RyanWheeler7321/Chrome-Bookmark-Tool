@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Random Bookmark Opener",
+  "name": "Chrome Bookmark Tool",
   "version": "1.0",
-  "description": "Open a random bookmark from a selected folder.",
+  "description": "Additional bookmark functionality.",
   "permissions": ["bookmarks", "activeTab", "storage"],
   "action": {
     "default_popup": "popup.html",
