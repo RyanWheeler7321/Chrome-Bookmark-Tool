@@ -6,11 +6,11 @@ Custom chrome extension for additional bookmark functionality.
 
 Clone the files and enable developer mode in chrome, and load unpacked and select the root path.
 
-Click extension pin to open menu, then select desired bookmark folder.
-
 ### Usage
 
-You can open a random bookmark from selected folder, and to open ALL bookmarks from selected folder.
+Click extension pin to open menu, then select your desired bookmark folder.
+
+You can use the buttons to open a random bookmark from the selected folder, or open ALL bookmarks from the selected folder.
 
 ### Future
 
