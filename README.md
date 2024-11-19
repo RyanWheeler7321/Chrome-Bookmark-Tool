@@ -4,7 +4,7 @@ Custom chrome extension for additional bookmark functionality.
 
 ### Installation
 
-Clone the files and enable developer mode in chrome, and load unpacked and select the root path.
+Clone the files and enable developer mode in chrome, hit load unpacked and select the root path.
 
 ### Usage
 
