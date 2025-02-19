@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         openRandomBookmark(selectedFolderId);
     });
 	
-	// Event listener for the new button
     openAllButton.addEventListener('click', function() {
         const selectedFolderId = selectElement.value;
         openAllBookmarks(selectedFolderId);
@@ -53,7 +52,6 @@ function loadFolders(nodes, selectElement, prefix = '') {
 }
 
 function isRootNode(node) {
-    // A node is considered a root node if its parentId is either "0" or undefined
     return node.parentId === '0' || node.parentId === undefined;
 }
 
@@ -74,7 +72,7 @@ function openAllBookmarks(folderId) {
     chrome.bookmarks.getChildren(folderId, function(bookmarks) {
         bookmarks.forEach(bookmark => {
             if (bookmark.url) { // Ensure it's a bookmark with a URL
-                chrome.tabs.create({url: bookmark.url, active: false}); // Opens each bookmark in a new tab without focusing it
+                chrome.tabs.create({url: bookmark.url, active: false}); // Opens each bookmark in a new tab
             }
         });
     });
