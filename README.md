@@ -1,3 +1,7 @@
+<img src="screenshot.png" alt="Chrome Bookmark Tool popup" width="320">
+
+<img src="icon.svg" alt="Chrome Bookmark Tool icon" width="96">
+
 # Chrome-Bookmark-Tool
 
 Custom chrome extension for additional bookmark functionality.

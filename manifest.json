@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Chrome Bookmark Tool",
   "version": "1.0",
-  "description": "Additional bookmark functionality.",
+  "description": "Pick a bookmark folder and open a random bookmark from it, or open all of its bookmarks.",
   "permissions": ["bookmarks", "activeTab", "storage"],
   "action": {
     "default_popup": "popup.html",

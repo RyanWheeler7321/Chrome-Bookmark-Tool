@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load bookmark folders into the select element
     chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
         loadFolders(bookmarkTreeNodes, selectElement);
+        if (selectElement.options.length === 0) {
+            showStatus('No bookmark folders found.');
+        }
         // Load the last selected folder
         chrome.storage.sync.get('lastSelectedFolder', function(items) {
             if (items.lastSelectedFolder) {
@@ -55,21 +58,39 @@ function isRootNode(node) {
     return node.parentId === '0' || node.parentId === undefined;
 }
 
-
+function showStatus(text) {
+    document.getElementById('status').textContent = text;
+}
 
 function openRandomBookmark(folderId) {
-    chrome.bookmarks.getChildren(folderId, function(bookmarks) {
-        const randomIndex = Math.floor(Math.random() * bookmarks.length);
-        const bookmark = bookmarks[randomIndex];
-        if (bookmark.url) {
-            chrome.tabs.create({url: bookmark.url});
+    if (!folderId) {
+        showStatus('No folder selected.');
+        return;
+    }
+    chrome.bookmarks.getChildren(folderId, function(children) {
+        // Only pick bookmarks, skip subfolders
+        const bookmarks = (chrome.runtime.lastError ? [] : children).filter(child => child.url);
+        if (bookmarks.length === 0) {
+            showStatus('No bookmarks in this folder.');
+            return;
         }
+        const randomIndex = Math.floor(Math.random() * bookmarks.length);
+        chrome.tabs.create({url: bookmarks[randomIndex].url});
     });
 }
 
 // New function to open all bookmarks in a folder
 function openAllBookmarks(folderId) {
+    if (!folderId) {
+        showStatus('No folder selected.');
+        return;
+    }
     chrome.bookmarks.getChildren(folderId, function(bookmarks) {
+        if (chrome.runtime.lastError || !bookmarks.some(bookmark => bookmark.url)) {
+            showStatus('No bookmarks in this folder.');
+            return;
+        }
+        showStatus('');
         bookmarks.forEach(bookmark => {
             if (bookmark.url) { // Ensure it's a bookmark with a URL
                 chrome.tabs.create({url: bookmark.url, active: false}); // Opens each bookmark in a new tab
